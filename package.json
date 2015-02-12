@@ -1,0 +1,31 @@
+{
+  "name": "mocha-webdriver-demo",
+  "version": "0.0.1",
+  "description": "none",
+  "keywords": [
+    "webdriver",
+    "selenium",
+    "chromedriver",
+    "grunt",
+    "grunt-webdriver"
+  ],
+  "repository": {
+
+  },
+  "author": "simplewei <wxb.uestc@gmail.com>",
+  "main": "test.js",
+  "engines": {
+    "node": ">= 0.1.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "load-grunt-tasks": "*",
+    "time-grunt": "*",
+    "grunt-shell": "^1.1.1",
+    "selenium-webdriver": "*"
+  },
+  "devDependencies": {
+    "grunt-selenium-webdriver": "^0.2.431"
+  }
+}
