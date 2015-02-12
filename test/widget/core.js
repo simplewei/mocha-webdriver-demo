@@ -1,11 +1,13 @@
 
+
+
+var By = require('selenium-webdriver').By;
+
+
+module.exports = function(driver){
+
+	return function(selector){
+		return driver.findElement(By.css(selector));
+	};
 	
-var chrome = require('selenium-webdriver/chrome'),
-	driver = new chrome.Driver(),
-	By = require('selenium-webdriver').By;
-
-
-module.exports = {
-	driver: driver,
-	By: By
-}
+};
