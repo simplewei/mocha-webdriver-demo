@@ -9,9 +9,7 @@
     "grunt",
     "grunt-webdriver"
   ],
-  "repository": {
-
-  },
+  "repository": {},
   "author": "simplewei <wxb.uestc@gmail.com>",
   "main": "test.js",
   "engines": {
@@ -26,6 +24,8 @@
     "selenium-webdriver": "*"
   },
   "devDependencies": {
-    "grunt-selenium-webdriver": "^0.2.431"
+    "chai": "^2.0.0",
+    "chai-jquery": "^2.0.0",
+    "grunt-selenium-webdriver": "^0.2.431",
   }
 }
