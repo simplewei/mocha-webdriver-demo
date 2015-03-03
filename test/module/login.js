@@ -1,5 +1,6 @@
 /*
- * 登陆测试用例
+ * 登陆测试用例,
+ * 用个人中心来登陆
  */
 'use strict';
 module.exports = function(driver) {
@@ -9,6 +10,7 @@ module.exports = function(driver) {
 		user = require('../user.conf');
 
 	describe('登陆', function() {
+
 		this.timeout(15000);
 		it('点击页头登陆link', function(done) {
 			// 等待发布页加载完毕
@@ -27,9 +29,11 @@ module.exports = function(driver) {
 
 			$('#u').sendKeys(user.user);
 			$('#p').sendKeys(user.psw);
-			$('#login_button').click();
+			$('#login_button').click().then(function() {
+			    driver.sleep(1000);
+			});
 			driver.switchTo().defaultContent();
-			
+
 			done();
 		});
 	});

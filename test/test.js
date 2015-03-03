@@ -10,21 +10,17 @@ var should = require('chai').should(),
 	driver, $;
 
 
-driver = new chrome.Driver();
+driver = new chrome.Driver(),
+$ = require('./widget/core')(driver);
 
 // run it once before tests
 before(function(done) {
 
 
-	// open start page
-	driver.get('http://trip.qq.com').then(function() {
-		console.log("open trip.qq.com...");
-		// done();
-	});
+	this.timeout(15000);
 
-	$ = require('./widget/core')(driver);
+	driver.get('http://trip.qq.com');
 
-	
 
 	// error handling - if you want do st
 	process.on('uncaughtException', function(err) {
@@ -39,45 +35,49 @@ before(function(done) {
 	});
 	done();
 
-
-
 });
 
 // run it once after tests
 after(function(done) {
 	// works with promise
+	this.timeout(15000);
 	driver.quit().then(done);
 });
 
 
+// 登陆
 require('./module/login')(driver);
 
 describe('首页', function() {
 
 	this.timeout(15000);
 
-	// 登陆
-	
-	it('点开日历', function(done) {
-
-		// driver.manage().timeouts().pageLoadTimeout(10 * 1000);
-
-		// driver.wait(webdriver.until.elementLocated(
-		//	webdriver.By.id('fc')),10000)
-
-		driver.findElement(webdriver.By.id('cft_login_status')).
-		findElement(webdriver.By.xpath('//li[contains(@id,"popup_cszm_SHA_2")]')).click()
-		// done()
-		// $('#fc').click().then(function() {
-		// 	return $('#_city_popup').isDisplayed();
-		// }).then(function(bool) {
-		// 	// driver.findElement(By.xpath('//li[contains(@class,"popup_cszm_SHA_2")]')).click();
-		// 	// $('#popup_cszm_SHA_2').click();
-		// 	// driver.findElement(By.id('popup_cszm_SHA_2')).click();
-		// 	$('#fc').click()
-		// 	bool.should.to.equal(true);
-		// 	// done();
-		// });
+	it('选择出发、目的城市, ', function(done) {
+		// 出发地
+		$('#fc').click();
+		$('#_div_tmp_div_list').findElement(webdriver.
+			By.xpath('//li[contains(@id, "SHA") and @class="_city_top_list"]')).click();
+		
+		// 目的地
+		$('#tc').click();
+		$('#_div_tmp_div_list').findElement(webdriver.
+			By.xpath('//li[contains(@id, "PEK") and @class="_city_top_list"]')).click();
+		
+		done();
 	});
 
-})
+	it('选择日期，点击查询航班', function(done){
+
+		// 选择日期 —— 选择右边日历第二行第一个元素
+		$('#date').click();
+		$('#two_yui').findElement(webdriver.By.xpath('//table/tbody/tr/following-sibling::tr[2]/td[1]/a')).click();
+
+		// 执行航班查询
+		$('#gl_jipiao_submit').click();
+		done();
+	});
+
+});
+
+// 航班查询页
+require('./module/query_result')(driver);
