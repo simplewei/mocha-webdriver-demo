@@ -22,23 +22,23 @@ module.exports = function(driver) {
 			// driver.wait(webdriver.until.elementLocated(
 			// 	webdriver.By.css('.a-tr')), 10000);
 
-			driver.sleep(3000).then(function(){
-				$('.a-tr').isDisplayed().then(function(b){
+			driver.sleep(3000).then(function() {
+				$('.a-tr').isDisplayed().then(function(b) {
 					assert.equal(true, b);
 					done();
 				});
 			});
 
-			
+
 		});
 
 		it('选择第一个航班,点开 ', function(done) {
 
 			$('#a-table-tr').findElement(webdriver.By.xpath('.//div[@class="a-tr"][1]/div[@class="action"][2]')).click();
 
-			driver.findElement(webdriver.By.xpath('//div[@class="cabin-container"][1]/div[1]/div[@class="a-sub-table-l5"]/input')).click();
-
-			done();
+			driver.findElement(webdriver.By.xpath('//div[@class="cabin-container"][1]/div[1]/div[@class="a-sub-table-l5"]/input')).click().then(function(){
+				done();
+			});
 		});
 	});
 };

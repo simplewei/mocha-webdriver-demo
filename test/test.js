@@ -19,8 +19,6 @@ before(function(done) {
 
 	this.timeout(15000);
 
-	driver.get('http://trip.qq.com');
-
 	process.on('uncaughtException', function(err) {
 		console.log("My error handler... " + err);
 
@@ -31,7 +29,11 @@ before(function(done) {
 			});
 		}
 	});
-	done();
+
+
+	driver.get('http://trip.qq.com').then(function(){
+		done();
+	});
 
 });
 
@@ -57,9 +59,11 @@ describe('首页', function() {
 
 		// 目的地
 		$('#tc').click();
-		$('#_div_tmp_div_list').findElement(webdriver.By.xpath('//li[contains(@id, "PEK") and @class="_city_top_list"]')).click();
-
-		done();
+		$('#_div_tmp_div_list').findElement(webdriver.By.xpath('//li[contains(@id, "PEK") and @class="_city_top_list"]')).click().
+		then(function(){
+			done();
+		});
+		
 	});
 
 	it('选择日期，点击查询航班', function(done) {
@@ -69,8 +73,10 @@ describe('首页', function() {
 		$('#two_yui').findElement(webdriver.By.xpath('.//table/tbody/tr/following-sibling::tr[2]/td[1]/a')).click();
 
 		// 执行航班查询
-		$('#gl_jipiao_submit').click();
-		done();
+		$('#gl_jipiao_submit').click().then(function(){
+			done();
+		});
+		
 	});
 
 });

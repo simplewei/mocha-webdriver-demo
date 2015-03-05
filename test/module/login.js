@@ -30,11 +30,11 @@ module.exports = function(driver) {
 			$('#u').sendKeys(user.user);
 			$('#p').sendKeys(user.psw);
 			$('#login_button').click().then(function() {
-			    driver.sleep(1000);
+				driver.sleep(1000);
 			});
-			driver.switchTo().defaultContent();
-
-			done();
+			driver.switchTo().defaultContent().then(function() {
+				done();
+			});
 		});
 	});
 };

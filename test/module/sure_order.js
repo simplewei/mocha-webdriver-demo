@@ -20,10 +20,10 @@ module.exports = function(driver) {
 			driver.wait(webdriver.until.elementLocated(webdriver.By.css('.passenger-list-line')), 10000);
 			driver.wait(webdriver.until.elementLocated(webdriver.By.css('.passenger-list-line')), 10000);
 
-			$('.btn_common').click().then(function(){
+			$('.btn_common').click().then(function() {
 				done();
-			});			
-			
+			});
+
 		});
 
 		it('确认是否最终进入支付页', function(done) {
@@ -34,8 +34,9 @@ module.exports = function(driver) {
 					return driver.getTitle().then(function(title) {
 						return title === '财付通 会支付 会生活 - 支付中心';
 					});
-				}, 10000);
-				done();
+				}, 10000).then(function(){
+					done();
+				});
 			});
 		});
 
