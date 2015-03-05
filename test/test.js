@@ -54,7 +54,7 @@ describe('首页', function() {
 	it('选择出发、目的城市, ', function(done) {
 		// 出发地
 		$('#fc').click();
-		$('#_div_tmp_div_list').findElement(webdriver.By.xpath('//li[contains(@id, "SHA1") and @class="_city_top_list"]')).click();
+		$('#_div_tmp_div_list').findElement(webdriver.By.xpath('//li[contains(@id, "SHA") and @class="_city_top_list"]')).click();
 
 		// 目的地
 		$('#tc').click();
