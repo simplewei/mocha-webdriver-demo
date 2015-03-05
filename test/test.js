@@ -11,7 +11,7 @@ var should = require('chai').should(),
 
 
 driver = new chrome.Driver(),
-$ = require('./widget/core')(driver);
+	$ = require('./widget/core')(driver);
 
 // run it once before tests
 before(function(done) {
@@ -21,8 +21,6 @@ before(function(done) {
 
 	driver.get('http://trip.qq.com');
 
-
-	// error handling - if you want do st
 	process.on('uncaughtException', function(err) {
 		console.log("My error handler... " + err);
 
@@ -55,22 +53,20 @@ describe('首页', function() {
 	it('选择出发、目的城市, ', function(done) {
 		// 出发地
 		$('#fc').click();
-		$('#_div_tmp_div_list').findElement(webdriver.
-			By.xpath('//li[contains(@id, "SHA") and @class="_city_top_list"]')).click();
-		
+		$('#_div_tmp_div_list').findElement(webdriver.By.xpath('//li[contains(@id, "SHA") and @class="_city_top_list"]')).click();
+
 		// 目的地
 		$('#tc').click();
-		$('#_div_tmp_div_list').findElement(webdriver.
-			By.xpath('//li[contains(@id, "PEK") and @class="_city_top_list"]')).click();
-		
+		$('#_div_tmp_div_list').findElement(webdriver.By.xpath('//li[contains(@id, "PEK") and @class="_city_top_list"]')).click();
+
 		done();
 	});
 
-	it('选择日期，点击查询航班', function(done){
+	it('选择日期，点击查询航班', function(done) {
 
 		// 选择日期 —— 选择右边日历第二行第一个元素
 		$('#date').click();
-		$('#two_yui').findElement(webdriver.By.xpath('//table/tbody/tr/following-sibling::tr[2]/td[1]/a')).click();
+		$('#two_yui').findElement(webdriver.By.xpath('.//table/tbody/tr/following-sibling::tr[2]/td[1]/a')).click();
 
 		// 执行航班查询
 		$('#gl_jipiao_submit').click();
@@ -81,3 +77,9 @@ describe('首页', function() {
 
 // 航班查询页
 require('./module/query_result')(driver);
+
+// 订单填写页
+require('./module/write_order')(driver);
+
+// 订单确认页
+require('./module/sure_order')(driver);
