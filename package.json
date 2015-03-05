@@ -16,16 +16,9 @@
     "node": ">= 0.1.0"
   },
   "license": "MIT",
-  "dependencies": {
-    "grunt": "^0.4.5",
-    "load-grunt-tasks": "*",
-    "time-grunt": "*",
-    "grunt-shell": "^1.1.1",
-    "selenium-webdriver": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "chai": "^2.0.0",
-    "chai-jquery": "^2.0.0",
-    "grunt-selenium-webdriver": "^0.2.431",
+    "selenium-webdriver": "*",
+    "chai": "^2.0.0"
   }
 }
